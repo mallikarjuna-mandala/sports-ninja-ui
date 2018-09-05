@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NewItem from './NewItem'
-// import ListGroup from 'react-bootstrap/lib/ListGroup';
-// import Col from 'react-bootstrap/lib/Col';
 
 class NewItems extends Component {
-  debugger;
   render() {
     return (
       <span className="news-items">
@@ -31,12 +28,7 @@ const getArticles = articles_deatil => {
 }
 
 const mapStateToProps = state => ({
-  articles: getArticles(state.articles)
+  articles: getArticles(state.articles.data)
 })
-
-// const mapStateToProps = state => {
-//   debugger;
-//   return { articles: state.articles.articles }
-// }
 
 export default connect(mapStateToProps, null)(NewItems)

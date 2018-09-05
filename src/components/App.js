@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 class App extends Component {
   componentDidMount() {
+    this.props.loadNewSources();
     this.props.loadNewItems();
   }
 
@@ -28,6 +29,9 @@ class App extends Component {
 
 function mapDispatchToProps(dispatch){
   return {
+    loadNewSources: ()=>{
+      dispatch({ type: 'FETCH_NEWS_SOURCES_REQUEST' });
+    },
     loadNewItems: ()=>{
       dispatch({ type: 'FETCH_NEWS_ITEMS_REQUEST' });
     }

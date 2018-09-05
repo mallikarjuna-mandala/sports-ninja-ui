@@ -30,7 +30,7 @@
 #header-text{
   color: #FF8A03;
   text-align: center;
-  margin-bottom: 0px;
+  margin: 0 0 0 0;
 }
 
 .filter-news{
@@ -67,4 +67,19 @@
   height: 100%;
   width: 70%;
   padding-left: 10px;
+}
+
+.filter-div{
+  margin-top: 10%;
+  text-align: center;
+}
+
+.filter-news-btn{
+  margin-top: 8%;
+}
+
+.sources-dropdown{
+  width: 50%;
+  height: 25px;
+  margin-top: 4%;
 }
