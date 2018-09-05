@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchNewsItems } from '../actions';
 import NewsSources from './NewsSources'
 import Button from 'react-bootstrap/lib/Button';
 
@@ -11,7 +12,7 @@ class Filter extends Component {
           <div><h4>Filter News Articles By Source</h4></div>
           <NewsSources sources={this.props.sources} />
           <div className="filter-news-btn" >
-            <Button bsStyle="primary" id="filter-articles">Filter Articles</Button>
+            <Button bsStyle="primary" id="filter-articles" onClick={this.props.filterNewsArticles}>Filter Articles</Button>
           </div>
         </div>
       </span>
@@ -30,4 +31,14 @@ const mapStateToProps = state => ({
   sources: getSources(state.sources.data)
 })
 
-export default connect(mapStateToProps, null)(Filter)
+const mapDispatchToProps = dispatch =>{
+  return {
+    filterNewsArticles: ()=>{
+      let sources = document.getElementById("sources-dropdown");
+      let source_id = sources.options[sources.selectedIndex].value
+      dispatch(fetchNewsItems(source_id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter)

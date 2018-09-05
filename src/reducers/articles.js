@@ -1,9 +1,7 @@
-// action types
 const FETCH_NEWS_ITEMS_REQUEST = "FETCH_NEWS_ITEMS_REQUEST";
 const FETCH_NEWS_API_CALL_SUCCESS = "FETCH_NEWS_API_CALL_SUCCESS";
 const FETCH_NEWS_API_CALL_FAILURE = "FETCH_NEWS_API_CALL_FAILURE";
 
-// reducer with initial state
 const initialState = {
   fetching: false,
   data: {},
@@ -11,7 +9,6 @@ const initialState = {
 };
 
 const articles = (state = initialState, action) => {
-  // debugger;
   switch (action.type) {
     case FETCH_NEWS_ITEMS_REQUEST:
       return { ...state, fetching: true, data: {}, error: null };
