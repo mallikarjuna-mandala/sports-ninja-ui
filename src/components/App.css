@@ -100,3 +100,7 @@
 .prev-next{
   margin: 2% 2% 2% 2%;
 }
+
+.not-found-articles{
+  text-align: center;
+}

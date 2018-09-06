@@ -10,6 +10,9 @@ class NewItems extends Component {
           <a className="action-btn" onClick={(event) => this.props.prevNewsItemList(event)} >&laquo; Previous</a>
           <a className="action-btn" id="next-btn" onClick={(event) => this.props.nextNewsItemList(event)}>Next &raquo;</a>
         </div>
+        { this.props.articles.length === 0 &&
+          <div className="not-found-articles"> No News Articles Found. Please click Previous Button to read News Articles</div>
+        }
         {this.props.articles.map(article =>
             <NewItem
               key={article.id}
