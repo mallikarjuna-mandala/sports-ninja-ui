@@ -21,7 +21,7 @@ class Filter extends Component {
 }
 
 const getSources = sources_deatil => {
-  if(sources_deatil['sources'] == undefined){
+  if(sources_deatil['sources'] === undefined){
     return [];
   }
   return sources_deatil.sources;

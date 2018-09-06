@@ -6,10 +6,10 @@ export function* watcherSaga() {
   yield takeLatest("FETCH_NEWS_ITEMS_REQUEST", newsItemsFetcherSaga);
 }
 
-function fetchNewItems(source_id) {
-  let api_url = "http://localhost:3000/articles";
-  if (source_id !== undefined && source_id !== '0'){
-    api_url = api_url + "?source_id=" + source_id
+function fetchNewItems(source_id, page_no) {
+  let api_url = "http://10.131.153.34:3000/articles?page_no=" + page_no;
+  if (source_id !== undefined && source_id !== 0){
+    api_url = api_url + "&source_id=" + source_id
   }
   return axios({
     method: "get",
@@ -19,7 +19,11 @@ function fetchNewItems(source_id) {
 
 function* newsItemsFetcherSaga(action) {
   try {
-    const response = yield call(fetchNewItems, action.source_id);
+    const state = yield select();
+    if(state.articles.page_no < 0){
+      throw 'Invalid Page no';
+    }
+    const response = yield call(fetchNewItems, state.articles.source_id, state.articles.page_no);
     const articles = response.data;
     yield put({ type: "FETCH_NEWS_API_CALL_SUCCESS", articles });
 
@@ -31,7 +35,7 @@ function* newsItemsFetcherSaga(action) {
 function fetchNewSources() {
   return axios({
     method: "get",
-    url: "http://localhost:3000/sources"
+    url: "http://10.131.153.34:3000/sources"
   });
 }
 

@@ -6,6 +6,10 @@ class NewItems extends Component {
   render() {
     return (
       <span className="news-items">
+        <div className="prev-next">
+          <a className="action-btn" onClick={(event) => this.props.prevNewsItemList(event)} >&laquo; Previous</a>
+          <a className="action-btn" id="next-btn" onClick={(event) => this.props.nextNewsItemList(event)}>Next &raquo;</a>
+        </div>
         {this.props.articles.map(article =>
             <NewItem
               key={article.id}
@@ -21,7 +25,7 @@ class NewItems extends Component {
 }
 
 const getArticles = articles_deatil => {
-  if(articles_deatil['articles'] == undefined){
+  if(articles_deatil['articles'] === undefined){
     return [];
   }
   return articles_deatil.articles;
@@ -31,4 +35,17 @@ const mapStateToProps = state => ({
   articles: getArticles(state.articles.data)
 })
 
-export default connect(mapStateToProps, null)(NewItems)
+const mapDispatchToProps = dispatch =>{
+  return {
+    nextNewsItemList: (event)=>{
+      event.preventDefault();
+      dispatch({ type: 'FETCH_NEWS_ITEMS_REQUEST', action_name: 'NEXT' })
+    },
+    prevNewsItemList: (event)=>{
+      event.preventDefault();
+      dispatch({ type: 'FETCH_NEWS_ITEMS_REQUEST', action_name: 'PREVIOUS' })
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewItems)
