@@ -7,7 +7,9 @@ class NewItems extends Component {
     return (
       <span className="news-items">
         <div className="prev-next">
-          <a className="action-btn" onClick={(event) => this.props.prevNewsItemList(event)} >&laquo; Previous</a>
+          { this.props.page_no != 0 &&
+            <a className="action-btn" onClick={(event) => this.props.prevNewsItemList(event)} >&laquo; Previous</a>
+          }
           <a className="action-btn" id="next-btn" onClick={(event) => this.props.nextNewsItemList(event)}>Next &raquo;</a>
         </div>
         { this.props.articles.length === 0 &&
@@ -35,7 +37,8 @@ const getArticles = articles_deatil => {
 }
 
 const mapStateToProps = state => ({
-  articles: getArticles(state.articles.data)
+  articles: getArticles(state.articles.data),
+  page_no: state.articles.page_no
 })
 
 const mapDispatchToProps = dispatch =>{
