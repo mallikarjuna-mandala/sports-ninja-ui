@@ -7,9 +7,7 @@ class NewItems extends Component {
     return (
       <span className="news-items">
         <div className="prev-next">
-          { this.props.page_no != 0 &&
-            <a className="action-btn" onClick={(event) => this.props.prevNewsItemList(event)} >&laquo; Previous</a>
-          }
+          <a className="action-btn" onClick={(event) => this.props.prevNewsItemList(event)} >&laquo; Previous</a>
           <a className="action-btn" id="next-btn" onClick={(event) => this.props.nextNewsItemList(event)}>Next &raquo;</a>
         </div>
         { this.props.articles.length === 0 &&
